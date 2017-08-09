@@ -48,7 +48,7 @@ function getRepoContributors(owner, repo, callback) {
     }
   }
 
-  request(options, function (error, response, body) {
+  request(options, ((error, response, body) => {
     if (error) {
       console.log(error);
     };
@@ -57,14 +57,14 @@ function getRepoContributors(owner, repo, callback) {
 
     // Passes JSON data as response into getRepoContributors():
     callback(null, users);
-  })
+  }))
 };
 
 function downloadImageByURL(url, filePath) {
   request.get(url)
-  .on('error', function (err) {
+  .on('error', ((err) => {
     throw err;
-  })
+  }))
   .on('end', function () {
   })
   // Assigns directory, filename, and file extension for downloaded images:
@@ -72,7 +72,7 @@ function downloadImageByURL(url, filePath) {
 };
 
 // Iterates through JSON data, passing avatar URL and user ID into downloadImageByURL():
-getRepoContributors(githubAccount, githubRepo, function(error, response) {
+getRepoContributors(githubAccount, githubRepo, ((error, response) => {
   if (response.message === 'Not Found') {
     console.log('==================================================')
     console.log('Error: That account/repository couldn\'t be found.');
@@ -97,9 +97,9 @@ getRepoContributors(githubAccount, githubRepo, function(error, response) {
     console.log ("Folder './avatars/' has been created");
   };
 
-  response.forEach(function (response) {
+  response.forEach((response) => {
     downloadImageByURL(response.avatar_url, response.login);
     console.log('Downloading avatar for contributor ' + response.login)
   });
   console.log('Avatars for all contributors downloaded. Have a nice day!');
-});
+}));

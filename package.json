@@ -10,7 +10,7 @@
   "author": "Ian Duke",
   "repository": {
     "type": "git",
-    "url": "https://github.com/1andee/lighthouse-project-work/blob/master/week2/w2d1/github-avatar-downloader/"
+    "url": "https://github.com/1andee/github-avatar-downloader/"
   },
   "license": "ISC",
   "dependencies": {
